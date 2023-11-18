@@ -1,5 +1,6 @@
 package ru.netology.moneytransferservice.repositories;
 
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
 import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
@@ -7,10 +8,8 @@ import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 import java.util.UUID;
 
 @Repository
+@NoArgsConstructor
 public class MonetTransferRepositoryImpl implements MonetTransferRepository {
-
-    public MonetTransferRepositoryImpl() {
-    }
 
     @Override
     public String transferMoney(MoneyTransferRequestDto requestDto) {
