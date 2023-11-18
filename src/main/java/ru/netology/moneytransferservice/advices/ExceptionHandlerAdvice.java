@@ -18,28 +18,23 @@ public class ExceptionHandlerAdvice {
         List<String> errorMessages = exception.getBindingResult().getAllErrors()
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .toList();
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
-                .message(errorMessages.toString())
-                .id(0)
-                .build();
-        return ResponseEntity.badRequest().body(errorResponseDto);
+        return ResponseEntity.badRequest().body(getErrorResponseDto(errorMessages.toString(), 0));
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponseDto> jsonParseErrorHandler(HttpMessageNotReadableException exception) {
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
-                .message(exception.getMessage())
-                .id(1)
-                .build();
-        return ResponseEntity.badRequest().body(errorResponseDto);
+        return ResponseEntity.badRequest().body(getErrorResponseDto(exception.getMessage(), 1));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> internalServerErrorHandler(Exception exception) {
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
-                .message(exception.getMessage())
-                .id(2)
+        return ResponseEntity.internalServerError().body(getErrorResponseDto(exception.getMessage(), 2));
+    }
+
+    private static ErrorResponseDto getErrorResponseDto(String errorMessage, int errorId) {
+        return ErrorResponseDto.builder()
+                .message(errorMessage)
+                .id(errorId)
                 .build();
-        return ResponseEntity.internalServerError().body(errorResponseDto);
     }
 }
