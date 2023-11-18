@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import ru.netology.moneytransferservice.entitites.ErrorResponseDto;
-import ru.netology.moneytransferservice.entitites.MoneyTransferRequestDto;
-import ru.netology.moneytransferservice.entitites.OperationResponseDto;
+import ru.netology.moneytransferservice.model.ErrorResponseDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
+import ru.netology.moneytransferservice.model.OperationResponseDto;
 import ru.netology.moneytransferservice.providers.RequestBodiesProvider;
 
 import java.util.UUID;

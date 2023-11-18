@@ -1,7 +1,7 @@
 package ru.netology.moneytransferservice.repositories;
 
-import ru.netology.moneytransferservice.entitites.ConfirmOperationRequestDto;
-import ru.netology.moneytransferservice.entitites.MoneyTransferRequestDto;
+import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 
 public interface MonetTransferRepository {
     String transferMoney(MoneyTransferRequestDto requestDto);

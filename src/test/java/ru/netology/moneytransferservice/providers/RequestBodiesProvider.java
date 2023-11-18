@@ -1,9 +1,9 @@
 package ru.netology.moneytransferservice.providers;
 
 import lombok.experimental.UtilityClass;
-import ru.netology.moneytransferservice.entitites.Amount;
-import ru.netology.moneytransferservice.entitites.ConfirmOperationRequestDto;
-import ru.netology.moneytransferservice.entitites.MoneyTransferRequestDto;
+import ru.netology.moneytransferservice.model.Amount;
+import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 
 @UtilityClass
 public class RequestBodiesProvider {

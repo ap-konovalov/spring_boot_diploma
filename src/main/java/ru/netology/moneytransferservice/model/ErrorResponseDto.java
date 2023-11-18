@@ -1,4 +1,4 @@
-package ru.netology.moneytransferservice.entitites;
+package ru.netology.moneytransferservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class OperationResponseDto {
-    private String operationId;
+public class ErrorResponseDto {
+    private String message;
+    private int id;
 }

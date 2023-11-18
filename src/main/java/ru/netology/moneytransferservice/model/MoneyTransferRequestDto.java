@@ -1,4 +1,4 @@
-package ru.netology.moneytransferservice.entitites;
+package ru.netology.moneytransferservice.model;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

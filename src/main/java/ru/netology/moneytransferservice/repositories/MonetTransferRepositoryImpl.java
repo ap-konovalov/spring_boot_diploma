@@ -1,8 +1,8 @@
 package ru.netology.moneytransferservice.repositories;
 
 import org.springframework.stereotype.Repository;
-import ru.netology.moneytransferservice.entitites.ConfirmOperationRequestDto;
-import ru.netology.moneytransferservice.entitites.MoneyTransferRequestDto;
+import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 
 import java.util.UUID;
 

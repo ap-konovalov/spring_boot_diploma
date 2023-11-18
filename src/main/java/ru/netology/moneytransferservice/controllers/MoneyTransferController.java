@@ -6,9 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.netology.moneytransferservice.entitites.ConfirmOperationRequestDto;
-import ru.netology.moneytransferservice.entitites.MoneyTransferRequestDto;
-import ru.netology.moneytransferservice.entitites.OperationResponseDto;
+import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
+import ru.netology.moneytransferservice.model.OperationResponseDto;
 import ru.netology.moneytransferservice.services.MoneyTransferService;
 
 @RestController
