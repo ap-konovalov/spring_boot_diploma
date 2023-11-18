@@ -20,13 +20,16 @@ public class MoneyTransferController {
     @PostMapping("/transfer")
     public ResponseEntity<OperationResponseDto> transfer(@RequestBody @Valid MoneyTransferRequestDto requestDto) {
         String transferId = moneyTransferService.transferMoney(requestDto);
-        return ResponseEntity.ok(OperationResponseDto.builder().operationId(transferId).build());
+        return ResponseEntity.ok(getOperationResponse(transferId));
     }
 
     @PostMapping("/confirmOperation")
     public ResponseEntity<OperationResponseDto> confirmOperation(@RequestBody @Valid ConfirmOperationRequestDto requestDto) {
         String operationId = moneyTransferService.confirmOperation(requestDto);
-        return ResponseEntity.ok(OperationResponseDto.builder().operationId(operationId).build());
+        return ResponseEntity.ok(getOperationResponse(operationId));
     }
 
+    private static OperationResponseDto getOperationResponse(String operationId) {
+        return OperationResponseDto.builder().operationId(operationId).build();
+    }
 }
