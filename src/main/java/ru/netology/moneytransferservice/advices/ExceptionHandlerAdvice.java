@@ -29,7 +29,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<ErrorResponseDto> jsonParseErrorHandler(HttpMessageNotReadableException exception) {
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
                 .message(exception.getMessage())
-                .id(0)
+                .id(1)
                 .build();
         return ResponseEntity.badRequest().body(errorResponseDto);
     }
@@ -38,7 +38,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<ErrorResponseDto> internalServerErrorHandler(Exception exception) {
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder()
                 .message(exception.getMessage())
-                .id(0)
+                .id(2)
                 .build();
         return ResponseEntity.internalServerError().body(errorResponseDto);
     }
