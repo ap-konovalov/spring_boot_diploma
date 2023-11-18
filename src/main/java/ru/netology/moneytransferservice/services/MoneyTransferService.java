@@ -1,22 +1,11 @@
 package ru.netology.moneytransferservice.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
 import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
-import ru.netology.moneytransferservice.repositories.MonetTransferRepositoryImpl;
 
-@Service
-public class MoneyTransferService {
+public interface MoneyTransferService {
 
-    @Autowired
-    MonetTransferRepositoryImpl monetTransferRepository;
+    String transferMoney(MoneyTransferRequestDto requestDto);
 
-    public String transferMoney(MoneyTransferRequestDto requestDto) {
-        return monetTransferRepository.transferMoney(requestDto);
-    }
-
-    public String confirmOperation(ConfirmOperationRequestDto requestDto) {
-        return monetTransferRepository.confirmOperation(requestDto);
-    }
+    String confirmOperation(ConfirmOperationRequestDto requestDto);
 }
