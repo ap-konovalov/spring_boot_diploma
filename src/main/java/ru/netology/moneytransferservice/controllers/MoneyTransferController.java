@@ -1,7 +1,6 @@
 package ru.netology.moneytransferservice.controllers;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +13,11 @@ import ru.netology.moneytransferservice.services.MoneyTransferService;
 @RestController
 public class MoneyTransferController {
 
-    @Autowired
-    MoneyTransferService moneyTransferService;
+    private final MoneyTransferService moneyTransferService;
+
+    public MoneyTransferController(MoneyTransferService moneyTransferService) {
+        this.moneyTransferService = moneyTransferService;
+    }
 
     @PostMapping("/transfer")
     public ResponseEntity<OperationResponseDto> transfer(@RequestBody @Valid MoneyTransferRequestDto requestDto) {
