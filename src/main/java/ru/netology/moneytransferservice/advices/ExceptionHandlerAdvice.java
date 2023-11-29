@@ -31,7 +31,7 @@ public class ExceptionHandlerAdvice {
         return ResponseEntity.internalServerError().body(getErrorResponseDto(exception.getMessage(), 2));
     }
 
-    private static ErrorResponseDto getErrorResponseDto(String errorMessage, int errorId) {
+    private ErrorResponseDto getErrorResponseDto(String errorMessage, int errorId) {
         return ErrorResponseDto.builder()
                 .message(errorMessage)
                 .id(errorId)
