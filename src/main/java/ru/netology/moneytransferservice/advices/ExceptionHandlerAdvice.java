@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.netology.moneytransferservice.model.ErrorResponseDto;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
@@ -17,6 +18,7 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<ErrorResponseDto> notValidArgumentsHandler(MethodArgumentNotValidException exception) {
         List<String> errorMessages = exception.getBindingResult().getAllErrors()
                 .stream().map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .filter(Objects::nonNull)
                 .toList();
         return ResponseEntity.badRequest().body(getErrorResponseDto(errorMessages.toString(), 0));
     }
