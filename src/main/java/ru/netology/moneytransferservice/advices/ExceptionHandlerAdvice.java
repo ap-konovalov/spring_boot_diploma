@@ -30,7 +30,7 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> internalServerErrorHandler(Exception exception) {
-        return ResponseEntity.internalServerError().body(getErrorResponseDto(exception.getMessage(), 2));
+        return ResponseEntity.internalServerError().body(getErrorResponseDto("Internal Server Error", 2));
     }
 
     private ErrorResponseDto getErrorResponseDto(String errorMessage, int errorId) {
