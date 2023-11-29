@@ -1,4 +1,4 @@
-package ru.netology.moneytransferservice.controller.money_transfer;
+package ru.netology.moneytransferservice.controller.moneytransferservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
