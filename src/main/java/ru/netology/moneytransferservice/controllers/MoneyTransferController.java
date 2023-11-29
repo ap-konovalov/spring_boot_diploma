@@ -1,6 +1,7 @@
 package ru.netology.moneytransferservice.controllers;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +12,10 @@ import ru.netology.moneytransferservice.model.OperationResponseDto;
 import ru.netology.moneytransferservice.services.MoneyTransferService;
 
 @RestController
+@RequiredArgsConstructor
 public class MoneyTransferController {
 
     private final MoneyTransferService moneyTransferService;
-
-    public MoneyTransferController(MoneyTransferService moneyTransferService) {
-        this.moneyTransferService = moneyTransferService;
-    }
 
     @PostMapping("/transfer")
     public ResponseEntity<OperationResponseDto> transfer(@RequestBody @Valid MoneyTransferRequestDto requestDto) {
