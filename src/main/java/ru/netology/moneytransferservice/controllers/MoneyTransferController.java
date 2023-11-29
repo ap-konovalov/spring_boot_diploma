@@ -29,7 +29,7 @@ public class MoneyTransferController {
         return ResponseEntity.ok(getOperationResponse(operationId));
     }
 
-    private static OperationResponseDto getOperationResponse(String operationId) {
+    private OperationResponseDto getOperationResponse(String operationId) {
         return OperationResponseDto.builder().operationId(operationId).build();
     }
 }
