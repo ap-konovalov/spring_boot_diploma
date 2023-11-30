@@ -10,10 +10,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
 import ru.netology.moneytransferservice.model.ErrorResponseDto;
+import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 import ru.netology.moneytransferservice.model.OperationResponseDto;
 import ru.netology.moneytransferservice.providers.RequestBodiesProvider;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,15 +31,20 @@ class ConfirmOperationTests {
 
     @Test
     void confirmOperationShouldReturnOperationId() {
+        MoneyTransferRequestDto transferRequestBody = RequestBodiesProvider.getMoneyTransferRequestBody();
+        ResponseEntity<OperationResponseDto> transferResponse = testRestTemplate.postForEntity(HOST +
+                        moneyTransferApp.getMappedPort(5500) + "/transfer",
+                transferRequestBody, OperationResponseDto.class);
+        ConfirmOperationRequestDto confirmOperationRequestBody = RequestBodiesProvider.getConfirmOperationRequestBody();
+        String operationId = transferResponse.getBody().getOperationId();
+        confirmOperationRequestBody.setOperationId(operationId);
+
         ResponseEntity<OperationResponseDto> response = testRestTemplate.postForEntity(HOST +
                         moneyTransferApp.getMappedPort(5500) + CONFIRM_OPERATION_PATH,
-                RequestBodiesProvider.getConfirmOperationRequestBody(), OperationResponseDto.class);
+                confirmOperationRequestBody, OperationResponseDto.class);
+
         assertTrue(response.getStatusCode().is2xxSuccessful());
-        try {
-            UUID.fromString(response.getBody().getOperationId());
-        } catch (IllegalArgumentException e) {
-            throw new AssertionError("Response field operationId not UUID");
-        }
+        assertEquals(operationId, response.getBody().getOperationId());
     }
 
     @Test
@@ -66,6 +70,19 @@ class ConfirmOperationTests {
         assertAll(
                 () -> assertEquals(0, response.getBody().getId()),
                 () -> assertEquals("[code must not be blank]", response.getBody().getMessage())
+        );
+    }
+
+    @Test
+    void errorDueToTransactionNotFound() {
+        ResponseEntity<ErrorResponseDto> response = testRestTemplate.postForEntity(HOST +
+                        moneyTransferApp.getMappedPort(5500) + CONFIRM_OPERATION_PATH,
+                RequestBodiesProvider.getConfirmOperationRequestBody(),
+                ErrorResponseDto.class);
+        assertTrue(response.getStatusCode().is4xxClientError());
+        assertAll(
+                () -> assertEquals(3, response.getBody().getId()),
+                () -> assertEquals("Transaction not found", response.getBody().getMessage())
         );
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.netology.moneytransferservice.exceptions.NoSuchTransactionException;
 import ru.netology.moneytransferservice.model.ErrorResponseDto;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> internalServerErrorHandler(Exception exception) {
         return ResponseEntity.internalServerError().body(getErrorResponseDto("Internal Server Error", 2));
+    }
+
+    @ExceptionHandler(NoSuchTransactionException.class)
+    public ResponseEntity<ErrorResponseDto> noSuchTransactionErrorHandler(NoSuchTransactionException exception) {
+        return ResponseEntity.badRequest().body(getErrorResponseDto(exception.getMessage(), 3));
     }
 
     private ErrorResponseDto getErrorResponseDto(String errorMessage, int errorId) {

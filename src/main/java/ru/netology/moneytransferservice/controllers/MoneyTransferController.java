@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.moneytransferservice.exceptions.NoSuchTransactionException;
 import ru.netology.moneytransferservice.model.ConfirmOperationRequestDto;
 import ru.netology.moneytransferservice.model.MoneyTransferRequestDto;
 import ru.netology.moneytransferservice.model.OperationResponseDto;
@@ -24,7 +25,8 @@ public class MoneyTransferController {
     }
 
     @PostMapping("/confirmOperation")
-    public ResponseEntity<OperationResponseDto> confirmOperation(@RequestBody @Valid ConfirmOperationRequestDto requestDto) {
+    public ResponseEntity<OperationResponseDto> confirmOperation(@RequestBody @Valid ConfirmOperationRequestDto requestDto)
+            throws NoSuchTransactionException {
         String operationId = moneyTransferService.confirmOperation(requestDto);
         return ResponseEntity.ok(getOperationResponse(operationId));
     }
