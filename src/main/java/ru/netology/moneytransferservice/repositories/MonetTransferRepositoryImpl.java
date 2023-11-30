@@ -37,4 +37,8 @@ public class MonetTransferRepositoryImpl implements MonetTransferRepository {
             throw new NoSuchTransactionException("Transaction not found");
         }
     }
+
+    public MoneyTransferRequestDto getMoneyTransferRequestFromDB(UUID operationId) {
+        return transactions.get(operationId);
+    }
 }
