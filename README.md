@@ -27,3 +27,6 @@ Backend будет доступен по адресу http://localhost:5500 <br>
 
 ## Логирование
 Данные по успешным транзакциям логируются в файле app.log в корне проекта.
+
+### Ссылка на Задачу на разработку
+https://github.com/netology-code/jd-homeworks/blob/master/diploma/moneytransferservice.md
